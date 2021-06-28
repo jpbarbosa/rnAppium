@@ -2,6 +2,8 @@
 
 React Native Testing Tutorial
 
+[![CircleCI](https://circleci.com/gh/jpbarbosa/rnAppium/tree/main.svg?style=svg)](https://circleci.com/gh/jpbarbosa/rnAppium/tree/main)
+
 ## Stack
 
 * React Native
