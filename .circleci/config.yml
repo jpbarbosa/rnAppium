@@ -1,0 +1,87 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@1.0.3
+
+jobs:
+  build-and-test-android:
+    executor:
+      name: android/android-machine
+
+    steps:
+      - checkout
+
+      - run:
+          name: Node 14 Repo
+          command: 'curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
+
+      - run:
+          name: Install Node
+          command: 'sudo apt-get install -y nodejs'
+
+      - run:
+          name: Install Yarn
+          command: 'sudo npm install -g yarn'
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: Create Build
+          command: yarn test:build:android
+
+      - android/accept-licenses
+
+      - android/create-avd:
+          avd-name: emulator-5554
+          install: true
+          system-image: system-images;android-29;default;x86_64
+
+      - android/start-emulator:
+          avd-name: emulator-5554
+          post-emulator-launch-assemble-command: ''
+
+      - android/run-tests:
+          test-command: yarn test:android
+
+  build-and-test-ios:
+    macos:
+      xcode: 12.4.0
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Yarn
+          command: brew install yarn
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: Create Build
+          command: npx react-native run-ios --configuration Release
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test-android
+      #- build-and-test-ios
