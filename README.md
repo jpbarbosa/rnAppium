@@ -365,3 +365,7 @@ The test will start running and should be successfully completed in about 10 min
 ### Screenshots
 
 https://github.com/jpbarbosa/rnAppium/wiki/Screenshots
+
+### More Info
+
+Based on previous studies by [@carlosvini](https://github.com/carlosvini) and [@Dugo03](https://github.com/Dugo03).
