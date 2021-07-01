@@ -322,17 +322,23 @@ jobs:
           command: yarn
 
       - run:
+          name: Pod Install
+          command: cd ios && pod install
+
+      - run:
           name: Create Build
           command: npx react-native run-ios --configuration Release
+
+      - run:
+          name: Run Tests
+          command: yarn test:ios
 
 workflows:
   sample:
     jobs:
       - build-and-test-android
-      #- build-and-test-ios
+      - build-and-test-ios # require CircleCI paid plan
 ```
-
-Obs.: iOS testing require CircleCI paid plan and additional building configuration.
 
 ### Add files to Git
 
