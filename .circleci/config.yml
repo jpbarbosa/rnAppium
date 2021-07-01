@@ -77,6 +77,10 @@ jobs:
             - ./node_modules
 
       - run:
+          name: Pod Install
+          command: cd ios && pod install
+
+      - run:
           name: Create Build
           command: npx react-native run-ios --configuration Release
 
