@@ -84,6 +84,10 @@ jobs:
           name: Create Build
           command: npx react-native run-ios --configuration Release
 
+      - run:
+          name: Run Tests
+          command: yarn test:ios
+
 workflows:
   sample:
     jobs:
