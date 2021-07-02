@@ -11,7 +11,7 @@ exports.config = {
       platformName: 'iOS',
       //platformVersion: '14.3',
       deviceName: 'iPhone 12',
-      app: '/Users/jp/Library/Developer/Xcode/DerivedData/rnAppium-eyfombhxagcaxvbasncufnpyxhts/Build/Products/Release-iphonesimulator/rnAppium.app',
+      app: './ios/build/Build/Products/Release-iphonesimulator/rnAppium.app',
       automationName: 'XCUITest',
       acceptInsecureCerts: true,
     },

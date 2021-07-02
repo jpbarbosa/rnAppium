@@ -12,6 +12,8 @@ React Native Testing Tutorial
 
 ## Steps
 
+Obs.: Replace rnAppium with your app name in each step.
+
 ### Create new React Native app
 
 ```bash
@@ -190,8 +192,6 @@ exports.config = {
 code ./wdio.conf.ios.js
 ```
 
-Obs.: APP_PATH will be further replaced.
-
 ```js
 exports.config = {
   runner: 'local',
@@ -206,7 +206,7 @@ exports.config = {
       platformName: 'iOS',
       //platformVersion: '14.3',
       deviceName: 'iPhone 12',
-      app: '/Users/jp/Library/Developer/Xcode/DerivedData/APP_PATH/Build/Products/Release-iphonesimulator/rnAppium.app',
+      app: './ios/build/Build/Products/Release-iphonesimulator/rnAppium.app',
       automationName: 'XCUITest',
       acceptInsecureCerts: true,
     },
@@ -238,9 +238,8 @@ yarn test:android
 ### Run tests locally for iOS
 
 ```bash
-npx react-native run-ios --configuration Release
-APP_PATH=`ls ~/Library/Developer/Xcode/DerivedData | grep rnAppium-`
-sed -i '' -e "s/APP_PATH/$APP_PATH/" ./wdio.conf.ios.js
+yarn test:build:ios
+# npx react-native run-ios --configuration Release # alternatively
 yarn test:ios
 ```
 
@@ -327,7 +326,7 @@ jobs:
 
       - run:
           name: Create Build
-          command: npx react-native run-ios --configuration Release
+          command: yarn test:build:ios
 
       - run:
           name: Run Tests
