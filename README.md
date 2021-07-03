@@ -128,6 +128,20 @@ echo 'File should be generated: android/app/build/outputs/apk/debug/app-debug.ap
 echo "android/app/src/main/assets/index.android.bundle" >> .gitignore
 ```
 
+### Create script to build iOS
+
+```bash
+code ./scripts/build-ios.sh
+```
+
+```bash
+xcodebuild -workspace ./ios/rnAppium.xcworkspace \
+           -configuration Release \
+           -scheme rnAppium \
+           -sdk iphonesimulator \
+           -derivedDataPath ./ios/build
+```
+
 ### Add scripts to package.json
 
 ```bash
