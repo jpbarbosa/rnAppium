@@ -139,7 +139,7 @@ code ./package.json
   "scripts": {
     ...
     "test:build:android": "bash scripts/build-android.sh",
-    "test:build:ios": "echo 'Run npx react-native run-ios --configuration Release'",
+    "test:build:ios": "bash scripts/build-ios.sh",
     "test:android": "wdio wdio.conf.android.js",
     "test:ios": "wdio wdio.conf.ios.js",
     ...
