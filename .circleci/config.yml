@@ -100,4 +100,4 @@ workflows:
   sample:
     jobs:
       - build-and-test-android
-      - build-and-test-ios # require CircleCI paid plan
+      #- build-and-test-ios # require CircleCI paid plan
