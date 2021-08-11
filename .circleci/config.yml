@@ -53,6 +53,9 @@ jobs:
       - android/run-tests:
           test-command: yarn test:android
 
+      - store_test_results:
+          path: test-results
+
   build-and-test-ios:
     macos:
       xcode: 12.4.0
